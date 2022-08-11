@@ -5,6 +5,8 @@ public class Main {
         task3();
         task4();
         task5();
+        task6();
+        task7();
     }
 
     public static void task1() {
@@ -53,7 +55,7 @@ public class Main {
     }
 
     public static void task5() {
-        int monthNumber = 15;
+        int monthNumber = 1;
         switch (monthNumber) {
             case 1:
             case 2:
@@ -76,6 +78,56 @@ public class Main {
                 System.out.println("Осень");
                 break;
             default:
+        }
+    }
+
+    public static void task6() {
+        int age = 19;
+        int salary = 58_000;
+        int salaryMultiplier1 = 3;
+        int salaryMultiplier2 = 2;
+        float limitMultiplier1 = 1.2f;
+        float limitMultiplier2 = 1.5f;
+        if (age >= 23) {
+            if (salary >= 50_000 && salary < 80_000) {
+                System.out.println("Мы готовы выдать вам кредитную карту с лимитом " + (int) (salary * salaryMultiplier1 * limitMultiplier1) + " рублей");
+            } else if (salary >= 80_000) {
+                System.out.println("Мы готовы выдать вам кредитную карту с лимитом " + (int) (salary * salaryMultiplier1 * limitMultiplier2) + " рублей");
+            } else {
+                System.out.println("Мы готовы выдать вам кредитную карту с лимитом " + salary * salaryMultiplier1 + " рублей");
+            }
+        }
+        if (age < 23) {
+            if (salary >= 50_000 && salary < 80_000) {
+                System.out.println("Мы готовы выдать вам кредитную карту с лимитом " + (int) (salary * salaryMultiplier2 * limitMultiplier1) + " рублей");
+            } else if (salary >= 80_000) {
+                System.out.println("Мы готовы выдать вам кредитную карту с лимитом " + (int) (salary * salaryMultiplier2 * limitMultiplier2) + " рублей");
+            } else {
+                System.out.println("Мы готовы выдать вам кредитную карту с лимитом " + salary * salaryMultiplier2 + " рублей");
+            }
+        }
+    }
+
+    public static void task7() {
+        int age = 35;
+        int salary = 90_000;
+        int wantedSum = 330_000;
+        double maxSalaryPaymentMonth = salary * 0.5;
+        double creditRatePercentYear = 10;
+        int creditPeriodMonth = 12;
+        if (age < 23) {
+            creditRatePercentYear = (creditRatePercentYear + 1);
+        } else if (age >= 23 & age < 30) {
+            creditRatePercentYear = (creditRatePercentYear + 0.5);
+        }
+        if (salary > 80_000) {
+            creditRatePercentYear = (creditRatePercentYear - 0.7);
+        }
+        double maxCreditPaymentMonth = wantedSum * (1 + (creditRatePercentYear / 100)) / creditPeriodMonth;
+        if (maxSalaryPaymentMonth > maxCreditPaymentMonth) {
+            System.out.println("Максимальный платеж при ЗП " + salary + " рублей равен " + (int)maxSalaryPaymentMonth + " рублей. Платеж по кредиту " + (int)maxCreditPaymentMonth + " рублей. Кредит одобрен");
+        } else {
+            System.out.println("Максимальный платеж при ЗП " + salary + " рублей равен " + (int)maxSalaryPaymentMonth + " рублей. Платеж по кредиту " + (int)maxCreditPaymentMonth + " рублей. В кредите отказано");
         }
     }
 }
