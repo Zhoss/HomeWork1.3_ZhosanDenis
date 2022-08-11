@@ -25,8 +25,7 @@ public class Main {
             System.out.println("Установите версию приложения для iOS по ссылке");
         } else if (clientOS == 0 && clientDeviceYear < 2015) {
             System.out.println("Установите облегченную версию приложения для iOS по ссылке");
-        }
-        if (clientOS == 1 && clientDeviceYear >= 2015) {
+        } else if (clientOS == 1 && clientDeviceYear >= 2015) {
             System.out.println("Установите версию приложения для Android по ссылке");
         } else if (clientOS == 1 && clientDeviceYear < 2015) {
             System.out.println("Установите облегченную версию приложения для Android по ссылке");
@@ -35,7 +34,7 @@ public class Main {
 
     public static void task3() {
         int year = 1900;
-        if ((year % 4 == 0 || year % 400 == 0) && year % 100 != 0) {
+        if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
             System.out.println(year + " год является високосным!");
         } else {
             System.out.println(year + " год не является високосным!");
@@ -84,28 +83,18 @@ public class Main {
     public static void task6() {
         int age = 19;
         int salary = 58_000;
-        int salaryMultiplier1 = 3;
-        int salaryMultiplier2 = 2;
-        float limitMultiplier1 = 1.2f;
-        float limitMultiplier2 = 1.5f;
+        int limit;
         if (age >= 23) {
-            if (salary >= 50_000 && salary < 80_000) {
-                System.out.println("Мы готовы выдать вам кредитную карту с лимитом " + (int) (salary * salaryMultiplier1 * limitMultiplier1) + " рублей");
-            } else if (salary >= 80_000) {
-                System.out.println("Мы готовы выдать вам кредитную карту с лимитом " + (int) (salary * salaryMultiplier1 * limitMultiplier2) + " рублей");
-            } else {
-                System.out.println("Мы готовы выдать вам кредитную карту с лимитом " + salary * salaryMultiplier1 + " рублей");
-            }
+            limit = salary * 3;
+        } else {
+            limit = salary * 2;
         }
-        if (age < 23) {
-            if (salary >= 50_000 && salary < 80_000) {
-                System.out.println("Мы готовы выдать вам кредитную карту с лимитом " + (int) (salary * salaryMultiplier2 * limitMultiplier1) + " рублей");
-            } else if (salary >= 80_000) {
-                System.out.println("Мы готовы выдать вам кредитную карту с лимитом " + (int) (salary * salaryMultiplier2 * limitMultiplier2) + " рублей");
-            } else {
-                System.out.println("Мы готовы выдать вам кредитную карту с лимитом " + salary * salaryMultiplier2 + " рублей");
-            }
+        if (salary >= 50_000 && salary < 80_000) {
+            limit = (int) (limit * 1.2);
+        } else if (salary >= 80_000) {
+            limit = (int) (limit * 1.5);
         }
+        System.out.println("Мы готовы выдать вам кредитную карту с лимитом " + limit + " рублей");
     }
 
     public static void task7() {
@@ -125,9 +114,9 @@ public class Main {
         }
         double maxCreditPaymentMonth = wantedSum * (1 + (creditRatePercentYear / 100)) / creditPeriodMonth;
         if (maxSalaryPaymentMonth > maxCreditPaymentMonth) {
-            System.out.println("Максимальный платеж при ЗП " + salary + " рублей равен " + (int)maxSalaryPaymentMonth + " рублей. Платеж по кредиту " + (int)maxCreditPaymentMonth + " рублей. Кредит одобрен");
+            System.out.println("Максимальный платеж при ЗП " + salary + " рублей равен " + (int) maxSalaryPaymentMonth + " рублей. Платеж по кредиту " + (int) maxCreditPaymentMonth + " рублей. Кредит одобрен");
         } else {
-            System.out.println("Максимальный платеж при ЗП " + salary + " рублей равен " + (int)maxSalaryPaymentMonth + " рублей. Платеж по кредиту " + (int)maxCreditPaymentMonth + " рублей. В кредите отказано");
+            System.out.println("Максимальный платеж при ЗП " + salary + " рублей равен " + (int) maxSalaryPaymentMonth + " рублей. Платеж по кредиту " + (int) maxCreditPaymentMonth + " рублей. В кредите отказано");
         }
     }
 }
